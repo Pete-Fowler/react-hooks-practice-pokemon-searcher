@@ -3,6 +3,7 @@ import PokemonPage from "./PokemonPage";
 
 function App() {
   const [ list, setList ] = useState([]);
+  const [ term, setTerm ] = useState('');
 
   useEffect(() => {
     fetch('http://localhost:3001/pokemon')
@@ -10,11 +11,15 @@ function App() {
     .then(data => setList(data))
   }, [])
 
-  const listShown = list;
+  function searchList(string) {
+    setTerm(string);
+  }
+
+  const listShown = list.filter(item => item.name.includes(term));
 
   return (
     <div className="App">
-      <PokemonPage listShown={listShown}/>
+      <PokemonPage listShown={listShown} searchList={searchList}/>
     </div>
   );
 }
