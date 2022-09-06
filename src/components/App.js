@@ -15,11 +15,15 @@ function App() {
     setTerm(string);
   }
 
+  function addPlayer(player) {
+    setList(list => [...list, player])
+  }
+
   const listShown = list.filter(item => item.name.includes(term));
 
   return (
     <div className="App">
-      <PokemonPage listShown={listShown} searchList={searchList}/>
+      <PokemonPage listShown={listShown} searchList={searchList} addPlayer={addPlayer}/>
     </div>
   );
 }
